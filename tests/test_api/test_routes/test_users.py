@@ -124,11 +124,12 @@ async def test_user_can_not_take_already_used_credentials(
     credentials_value: str,
 ) -> None:
     user_dict = {
-        "username": "not_taken_username",
-        "password": "password",
-        "email": "free_email@email.com",
+        'username': 'not_taken_username',
+        'password': 'password',
+        'email': 'free_email@email.com',
+        credentials_part: credentials_value,
     }
-    user_dict.update({credentials_part: credentials_value})
+
     async with pool.acquire() as conn:
         users_repo = UsersRepository(conn)
         await users_repo.create_user(**user_dict)
